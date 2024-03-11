@@ -1,0 +1,130 @@
+/*atividade 1*/
+SELECT 
+    paciente.id_paciente,
+    UPPER(paciente.nome) nome_paciente,
+    paciente.id_tutor,
+    UPPER(tutor.nome) nome_tutor,
+    tutor.endereco endereco_tutor,
+    tutor.telefone telefone_tutor
+FROM paciente
+INNER JOIN tutor ON tutor.id_tutor = paciente.id_tutor
+
+
+/*atividade 2*/
+SELECT 
+    paciente.id_paciente,
+    UPPER(paciente.nome) nome_paciente,
+    paciente.id_tutor,
+    paciente.nome,
+    paciente.raca,
+    paciente.peso,
+    paciente.cor,
+    paciente.data_nascimento,
+    UPPER(tutor.nome) nome_tutor,
+    tutor.endereco endereco_tutor,
+    tutor.data_nascimento
+FROM paciente
+LEFT JOIN tutor ON tutor.id_tutor = paciente.id_tutor
+
+/*atividade 3*/
+SELECT 
+    tutor.id_tutor,
+    UPPER(tutor.nome) nome_tutor,
+    paciente.id_paciente,
+    UPPER(paciente.nome) nome_paciente,
+    paciente.raca raca_paciente
+FROM tutor
+INNER JOIN paciente ON tutor.id_tutor = paciente.id_tutor
+
+/*atividade 4*/
+SELECT 
+    tutor.id_tutor,
+    UPPER(tutor.nome) nome_tutor,
+    paciente.id_paciente,
+    UPPER(paciente.nome) nome_paciente,
+    paciente.raca,
+    paciente.peso,
+    paciente.cor,
+    paciente.data_nascimento
+FROM tutor
+LEFT JOIN paciente ON tutor.id_tutor = paciente.id_tutor
+
+/*atividade 5*/
+SELECT 
+    medicamentos.id_medicamento,
+    medicamentos.descricao,
+    receita.data_receita,
+    receita.id_paciente,
+    receita.id_tutor,
+    item_receita.posologia,
+    item_receita.quantidade,
+    item_receita.valor_total
+FROM medicamentos
+INNER JOIN item_receita ON item_receita.id_medicamento = medicamentos.id_medicamento
+left join receita on receita.id_receita = item_receita.id_receita
+
+/*atividade 6*/
+SELECT 
+    medicamentos.id_medicamento,
+    medicamentos.descricao,
+    receita.data_receita,
+    receita.id_paciente,
+    receita.id_tutor,
+    item_receita.posologia,
+    item_receita.quantidade,
+    item_receita.valor_total
+FROM medicamentos
+LEFT JOIN item_receita ON item_receita.id_medicamento = medicamentos.id_medicamento
+LEFT JOIN receita ON receita.id_receita = item_receita.id_receita
+
+
+/*atividade 7*/
+SELECT 
+    receita.id_paciente,
+    paciente.nome AS nome_paciente,
+    paciente.raca,
+    receita.id_receita,
+    receita.data_receita
+FROM receita
+INNER JOIN paciente ON receita.id_paciente = paciente.id_paciente
+
+
+/*atividade 8*/
+SELECT 
+    receita.id_paciente,
+    UPPER(paciente.nome),
+    paciente.raca,
+    receita.id_receita,
+    receita.data_receita
+FROM receita 
+LEFT JOIN paciente ON receita.id_paciente = paciente.id_paciente
+
+
+/*atividade 9*/
+SELECT 
+    receita.id_receita,
+    receita.data_receita,
+    medicamentos.id_medicamento,
+    medicamentos.descricao,
+    medicamentos.unidade,
+    item_receita.quantidade,
+    item_receita.posologia 
+FROM receita
+INNER JOIN item_receita ON receita.id_receita = item_receita.id_receita
+INNER JOIN medicamentos ON item_receita.id_medicamento = medicamentos.id_medicamento
+
+
+/*atividade 10*/
+SELECT 
+    receita.id_receita,
+    receita.data_receita,
+    receita.id_paciente,
+    receita.id_tutor,
+    medicamentos.id_medicamento,
+    medicamentos.descricao,
+    medicamentos.unidade,
+    item_receita.quantidade,
+    item_receita.posologia
+FROM receita
+LEFT JOIN item_receita ON receita.id_receita = item_receita.id_receita
+inner JOIN medicamentos ON item_receita.id_medicamento = medicamentos.id_medicamento
